@@ -1,0 +1,18 @@
+/* .container {
+	display: inline-block;
+	align-items: center;
+	padding: 5px;
+	margin: 0 auto;
+	width: 100%;
+	background-image: url("../../components/Image/Ariel.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	border-color: rgb(197, 197, 197);
+	box-shadow: 0px 5px 4px 0 #06463bac;
+}
+ */
+.text {
+	margin: 15px 30px;
+	padding: 15px;
+}
