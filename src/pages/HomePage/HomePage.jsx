@@ -1,20 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { nanoid } from 'nanoid';
 
-import ContactForm from './PhonebookContact/ContactForm';
-import FilterPhonebook from './FilterPhonebook/FilterPhonebook';
-import ContactList from './Contacts/ContactList';
+import ContactForm from 'components/PhonebookContact/ContactForm';
+import FilterPhonebook from 'components/FilterPhonebook/FilterPhonebook';
+import ContactList from 'components/Contacts/ContactList';
 
-import initialContacts from 'services/contacts.json';
 import css from './home-page.module.css';
 
 const HomePage = () => {
-  const [contacts, setContacts] = useState(() => JSON.parse(window.localStorage.getItem('my contacts')) ?? [...initialContacts]);
+  const [contacts, setContacts] = useState([])
   const [filter, setFilter] = useState('');
-
-  useEffect(() => {
-    localStorage.setItem('my contacts', JSON.stringify(contacts));
-  }, [contacts]);
 
   const isDublicate = name => {
     const normalizedName = name.toLowerCase();
@@ -66,17 +61,19 @@ const HomePage = () => {
     return result;
   };
 
+  const filteredContacts = getfilterContacts()
+  const isContacts = Boolean(filteredContacts.length);
   return (
     <main className={css.conteinerPhonebook}>
-      <h1>Phonebook</h1>
       <ContactForm onSubmitForm={addFormSubmitContact} />
 
-      <h2>Contacts</h2>
+      <h2 className={css.text}>Contacts</h2>
       <FilterPhonebook onChange={changeFilter} />
       <ContactList
         contacts={getfilterContacts()}
         onDeleteContact={removeContact}
       />
+	  {!isContacts && <p>No contacts</p>}
     </main>
   );
 };

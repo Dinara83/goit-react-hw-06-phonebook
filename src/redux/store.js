@@ -1,13 +1,22 @@
-// import { createStore } from 'redux';
-// import { devToolsEnhancer } from '@redux-devtools/extension';
+import { createStore } from 'redux';
+import initialContacts from 'services/contacts.json';
 
-// const appState = {
-//   contacts: [],
-//   filter: '',
-// };
+const reducer = store => {
+  return store;
+};
+
+const inititialStore = {
+  contacts: [...initialContacts],
+  filter: '',
+};
+
+const store = createStore(
+  reducer,
+  inititialStore,
+  window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 // const rootReducer = (state = appState, action) => {
 //   return state;
 // };
-// const enhancer = devToolsEnhancer();
-// export const store = createStore(rootReducer);
+export default store;

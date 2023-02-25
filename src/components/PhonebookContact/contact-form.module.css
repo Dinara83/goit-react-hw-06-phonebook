@@ -1,35 +1,37 @@
 .wrapper {
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	flex-direction: column;
 	padding: 15px;
 	margin: 0;
 	margin-bottom: 30px;
 	border: 1px solid;
-	box-shadow: 3px 5px 2px 0 rgb(0 0 0 / 0.5);
+	box-shadow: 0px 5px 4px 0 #06463bac;
 	border-radius: 6px;
 }
 
 .label {
-	display: block;
 	font-weight: 500;
 	font-family: inherit;
 	margin-bottom: 5px;
+	color: #5e4874;
 }
 
 .input {
-	width: 150px;
+	width: 200px;
 	margin-bottom: 25px;
 	font-weight: 300;
 	border-radius: 3px;
-	border: 1px solid black;
+	border: 1px solid #5e4874;
+	box-shadow: 1px 1px 2px 2px #06463bac;
 }
 
 .input:focus,
 .input:hover {
-	outline-color: rgba(33, 26, 238, 0.5);
+	outline-color: #5e4874;
 	border-radius: 3px;
-	box-shadow: 0 0 1px 1px rgba(33, 26, 238, 0.5);
+	box-shadow: 0 0 1px 1px #5e4874;
 }
 
 .btn {
@@ -38,12 +40,13 @@
 	padding: 0px 25px;
 	margin-top: 5px;
 	cursor: pointer;
+	color: #5e4874;
 	border: gray;
-	box-shadow: 1px 1px 2px 2px gray;
+	box-shadow: 1px 1px 2px 2px #06463bac;
 }
 
 .btn:focus,
 .btn:hover {
-	background-color: rgba(33, 26, 238, 0.5);
-	box-shadow: 1px 1px 2px 2px rgba(10, 9, 56, 0.5);
+	background-color: #8c7a9d;
+	box-shadow: 1px 1px 2px 2px #06463bac;
 }
