@@ -1,15 +1,20 @@
 import { useState } from 'react';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
+import { useSelector, useDispatch } from 'react-redux';
 
 import ContactForm from 'components/PhonebookContact/ContactForm';
 import FilterPhonebook from 'components/FilterPhonebook/FilterPhonebook';
 import ContactList from 'components/Contacts/ContactList';
 
+import { addContact, deleteContact } from 'redux/actions';
+
 import css from './home-page.module.css';
 
 const HomePage = () => {
-  const [contacts, setContacts] = useState([])
+  const contacts = useSelector(store => store.contacts);
   const [filter, setFilter] = useState('');
+
+  const dispatch = useDispatch();
 
   const isDublicate = name => {
     const normalizedName = name.toLowerCase();
@@ -20,30 +25,20 @@ const HomePage = () => {
     return Boolean(result);
   };
 
-  const addFormSubmitContact = ({ name, number }) => {
+  const handleAddContact = ({ name, number }) => {
     if (isDublicate(name)) {
       alert(`${name} is already in contacts.`);
       return false;
     }
 
-    setContacts(prevContacts => {
-      const newContact = {
-        id: nanoid(),
-        name,
-        number,
-      };
-
-      return [newContact, ...prevContacts];
-    });
-
-    return true;
+    const action = addContact({ name, number });
+    dispatch(action);
   };
 
-  const removeContact = id => {
-    setContacts(prevContacts =>
-      prevContacts.filter(contact => contact.id !== id)
-    );
-  };
+    const handleDeleteContact = id => {
+		const action = deleteContact(id)
+		dispatch(action)
+    };
 
   const changeFilter = ({ target }) => setFilter(target.value);
 
@@ -61,19 +56,18 @@ const HomePage = () => {
     return result;
   };
 
-  const filteredContacts = getfilterContacts()
+  const filteredContacts = getfilterContacts();
   const isContacts = Boolean(filteredContacts.length);
   return (
     <main className={css.conteinerPhonebook}>
-      <ContactForm onSubmitForm={addFormSubmitContact} />
-
+      <ContactForm onSubmitForm={handleAddContact} />
       <h2 className={css.text}>Contacts</h2>
       <FilterPhonebook onChange={changeFilter} />
       <ContactList
         contacts={getfilterContacts()}
-        onDeleteContact={removeContact}
+        onDeleteContact={handleDeleteContact}
       />
-	  {!isContacts && <p>No contacts</p>}
+      {!isContacts && <p>No contacts</p>}
     </main>
   );
 };
