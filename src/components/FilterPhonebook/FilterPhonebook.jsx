@@ -2,11 +2,12 @@ import PropTypes from 'prop-types';
 
 import css from './filter-phonebook.module.css';
 
-const FilterPhonebook = ({ onChange }) => {
+const FilterPhonebook = ({ onChange, value }) => {
   return (
     <form className={css.wrapperFilter}>
       <label className={css.labelFilter}>Find contacts by name</label>
       <input
+	  value={value}
         className={css.inputFilter}
         type="text"
         name="filter"

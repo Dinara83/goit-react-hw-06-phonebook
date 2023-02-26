@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux';
-import css from './my-contacts-page.module.css';
+import { getImportandContacts } from 'redux/contacts/contacts-selectors';
 
-const MyContactsPage = () => {
-  const contacts = useSelector(store => store.contacts);
-  console.log(contacts);
+import css from './important-contacts-page.module.css';
+
+const ImportantContactsPage = () => {
+  const contacts = useSelector(getImportandContacts);
 
 //   const removeContact = id => {
 //     setContacts(prevContacts =>
@@ -11,8 +12,9 @@ const MyContactsPage = () => {
 //     );
 //   };
 
+
   const elements = contacts.map(({ id, name, number }) => (
-    <li className={css.contactsItem}>
+    <li key={id} className={css.contactsItem}>
       <span className={css.contactsText}>
         {name}: {number}
       </span>
@@ -27,4 +29,4 @@ const MyContactsPage = () => {
   </ul>;
 };
 
-export default MyContactsPage;
+export default ImportantContactsPage;

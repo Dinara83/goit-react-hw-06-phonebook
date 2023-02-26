@@ -1,33 +1,27 @@
 import { useState } from 'react';
-
 import PropTypes from 'prop-types';
 
+import inititialState from './inititialState';
 import css from './contact-form.module.css';
 
 const ContactForm = ({ onSubmitForm }) => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [state, setState] = useState({ ...inititialState });
 
-  const handleChange = evt => {
-    const { name, value } = evt.currentTarget;
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      case 'number':
-        setNumber(value);
-        break;
-      default:
-        return;
-    }
+  const handleChange = ({ target }) => {
+    const { name, value, type, checked } = target;
+    const newValue = type === 'checkbox' ? checked : value;
+    setState(prevState => {
+      return { ...prevState, [name]: newValue };
+    });
   };
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    onSubmitForm({ name, number });
-    setName('');
-    setNumber('');
+    onSubmitForm({ ...state });
+    setState({ ...inititialState });
   };
+
+  const { name, number, importantContact } = state;
 
   return (
     <form className={css.wrapper} onSubmit={handleSubmit}>
@@ -54,6 +48,15 @@ const ContactForm = ({ onSubmitForm }) => {
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         required
       />
+
+      <label className={css.label}>Important Contact</label>
+      <input
+        name="importantContact"
+        checked={importantContact}
+        type="checkbox"
+        onChange={handleChange}
+      />
+
       <button className={css.btn} type="submit">
         Add contact
       </button>

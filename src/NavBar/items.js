@@ -8,8 +8,8 @@ const items = [
   },
   {
     id: nanoid(),
-    text: 'My Contacts',
-    link: '/my-contacts',
+    text: 'Important Contacts',
+    link: '/important-contacts',
   },
 ];
 
