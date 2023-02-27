@@ -1,16 +1,18 @@
-import { useSelector } from 'react-redux';
-import { getImportandContacts } from 'redux/contacts/contacts-selectors';
+import { useSelector, useDispatch } from 'react-redux';
+import { getImportantContacts } from 'redux/contacts/contacts-selectors';
+import { deleteContact } from 'redux/contacts/contacts-slice';
 
 import css from './important-contacts-page.module.css';
 
 const ImportantContactsPage = () => {
-  const contacts = useSelector(getImportandContacts);
+  const contacts = useSelector(getImportantContacts);
 
-//   const removeContact = id => {
-//     setContacts(prevContacts =>
-//       prevContacts.filter(contact => contact.id !== id)
-//     );
-//   };
+  const dispatch = useDispatch();
+
+  const handleDeleteContact = id => {
+    const action = deleteContact(id);
+    dispatch(action);
+  };
 
 
   const elements = contacts.map(({ id, name, number }) => (
@@ -18,9 +20,9 @@ const ImportantContactsPage = () => {
       <span className={css.contactsText}>
         {name}: {number}
       </span>
-      {/* <button className={css.contactsBtn} onClick={() => removeContact(id)}>
+      <button className={css.contactsBtn} onClick={() => handleDeleteContact(id)}>
         Delete
-      </button> */}
+      </button>
     </li>
   ));
 

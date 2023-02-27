@@ -1,10 +1,10 @@
 export const getAllContacts = store => store.contacts;
 
-export const getImportandContacts = ({ contacts }) => {
-  const onlyImportandContacts = contacts.filter(
+export const getImportantContacts = ({ contacts }) => {
+  const onlyImportantContacts = contacts.filter(
     ({ importantContact }) => importantContact
   );
-  return onlyImportandContacts;
+  return onlyImportantContacts;
 };
 
 export const getFilteredContacts = ({ contacts, filter }) => {

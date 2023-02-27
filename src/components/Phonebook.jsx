@@ -4,8 +4,8 @@ import ContactForm from 'components/PhonebookContact/ContactForm';
 import FilterPhonebook from 'components/FilterPhonebook/FilterPhonebook';
 import ContactList from 'components/Contacts/ContactList';
 
-import { addContact, deleteContact } from 'redux/contacts/contacts-actions';
-import { setFilter } from 'redux/filter/filter-actions';
+import { addContact, deleteContact } from 'redux/contacts/contacts-slice';
+import { setFilter } from 'redux/filter/filter-slice';
 
 import {
   getAllContacts,
@@ -19,7 +19,7 @@ const Phonebook = () => {
   const filterContacts = useSelector(getFilteredContacts);
   const allContacts = useSelector(getAllContacts);
   const filter = useSelector(getFilter);
-  
+
   const dispatch = useDispatch();
 
   const isDublicate = name => {

@@ -1,4 +1,4 @@
-/* .contactsItem {
+.contactsItem {
 	margin-bottom: 15px;
 }
 
@@ -19,8 +19,9 @@
 	font-weight: 300;
 	width: 100px;
 	border-radius: 3px;
+	color: #5e4874;
 	border: gray;
-	box-shadow: 1px 1px 2px 2px gray;
+	box-shadow: 1px 1px 2px 2px #06463bac;
 	padding: 0px 10px;
 	margin-top: 5px;
 	cursor: pointer;
@@ -28,6 +29,6 @@
 
 .contactsBtn:focus,
 .contactsBtn:hover {
-	background-color: rgba(33, 26, 238, 0.5);
-	box-shadow: 1px 1px 2px 2px rgba(10, 9, 56, 0.5);
-} */
+	background-color: #8c7a9d;
+	box-shadow: 1px 1px 2px 2px #06463bac;
+}

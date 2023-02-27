@@ -7,7 +7,7 @@ const FilterPhonebook = ({ onChange, value }) => {
     <form className={css.wrapperFilter}>
       <label className={css.labelFilter}>Find contacts by name</label>
       <input
-	  value={value}
+        value={value}
         className={css.inputFilter}
         type="text"
         name="filter"

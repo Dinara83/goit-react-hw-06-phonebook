@@ -4,7 +4,10 @@ import css from './contact-list.module.css';
 
 const ContactList = ({ contacts, onDeleteContact }) => {
   const elements = contacts.map(({ id, name, number, importantContact }) => (
-    <li key={id} className={{ fontWeight: importantContact ? 'bold' : 'normal' }}>
+    <li
+      key={id}
+      className={{ fontWeight: importantContact ? 'bold' : 'normal' }}
+    >
       <span className={css.contactsText}>
         {name}: {number}
       </span>
@@ -20,7 +23,6 @@ const ContactList = ({ contacts, onDeleteContact }) => {
     </div>
   );
 };
-
 
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
