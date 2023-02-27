@@ -9,7 +9,7 @@ const ImportantContactsPage = () => {
 
   const dispatch = useDispatch();
 
-  const handleDeleteContact = id => {
+  const handleRemoveContact = id => {
     const action = deleteContact(id);
     dispatch(action);
   };
@@ -20,7 +20,7 @@ const ImportantContactsPage = () => {
       <span className={css.contactsText}>
         {name}: {number}
       </span>
-      <button className={css.contactsBtn} onClick={() => handleDeleteContact(id)}>
+      <button className={css.contactsBtn} onClick={() => handleRemoveContact(id)}>
         Delete
       </button>
     </li>
