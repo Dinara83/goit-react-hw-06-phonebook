@@ -14,21 +14,21 @@ const ImportantContactsPage = () => {
     dispatch(action);
   };
 
-
   const elements = contacts.map(({ id, name, number }) => (
     <li key={id} className={css.contactsItem}>
       <span className={css.contactsText}>
         {name}: {number}
       </span>
-      <button className={css.contactsBtn} onClick={() => handleRemoveContact(id)}>
+      <button
+        className={css.contactsBtn}
+        onClick={() => handleRemoveContact(id)}
+      >
         Delete
       </button>
     </li>
   ));
 
-  return <ul className={css.contactsList}>
-        {elements}
-  </ul>;
+  return <ul className={css.contactsList}>{elements}</ul>;
 };
 
 export default ImportantContactsPage;
