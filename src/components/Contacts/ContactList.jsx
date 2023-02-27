@@ -5,8 +5,7 @@ import css from './contact-list.module.css';
 const ContactList = ({ contacts, onDeleteContact }) => {
   const elements = contacts.map(({ id, name, number, importantContact }) => (
     <li
-      key={id}
-      className={{ fontWeight: importantContact ? 'bold' : 'normal' }}
+	style={{ fontWeight: importantContact ? 'bold' : 'normal' }} key={id}
     >
       <span className={css.contactsText}>
         {name}: {number}
