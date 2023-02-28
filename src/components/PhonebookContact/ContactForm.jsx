@@ -1,11 +1,18 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
+
+import { addContact } from 'redux/contacts/contacts-slice';
+import { getAllContacts } from 'redux/contacts/contacts-selectors';
+
+import { useSelector, useDispatch } from 'react-redux';
 
 import inititialState from './inititialState';
 import css from './contact-form.module.css';
 
-const ContactForm = ({ onSubmitForm }) => {
+const ContactForm = () => {
   const [state, setState] = useState({ ...inititialState });
+  const allContacts = useSelector(getAllContacts);
+
+  const dispatch = useDispatch();
 
   const handleChange = ({ target }) => {
     const { name, value, type, checked } = target;
@@ -17,8 +24,26 @@ const ContactForm = ({ onSubmitForm }) => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    onSubmitForm({ ...state });
+    handleAddContact({ ...state });
     setState({ ...inititialState });
+  };
+
+  const isDublicate = name => {
+    const normalizedName = name.toLowerCase();
+    const result = allContacts.find(({ name }) => {
+      return name.toLowerCase() === normalizedName;
+    });
+
+    return Boolean(result);
+  };
+
+  const handleAddContact = ({ name, number, importantContact }) => {
+    if (isDublicate(name)) {
+      alert(`${name} is already in contacts.`);
+      return false;
+    }
+    const action = addContact({ name, number, importantContact });
+    dispatch(action);
   };
 
   const { name, number, importantContact } = state;
@@ -65,7 +90,3 @@ const ContactForm = ({ onSubmitForm }) => {
 };
 
 export default ContactForm;
-
-ContactForm.propTypes = {
-  onSubmitForm: PropTypes.func.isRequired,
-};

@@ -9,10 +9,10 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-import rootReduser from './root-reducer';
+import persistedReducer from './root-reducer';
 
 export const store = configureStore({
-  reducer: rootReduser,
+  reducer: persistedReducer,
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
